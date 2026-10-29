@@ -4,12 +4,14 @@ import restaurants from './data/restaurants.json'
 import souvenirs from './data/souvenirs.json'
 import itineraries from './data/itineraries.json'
 import travelInfo from './data/travel-info.json'
+import visitConditions from './data/visit-conditions.json'
 import PlaceCard from './components/PlaceCard.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
 import { ArrowIcon, CompassIcon, SearchIcon } from './components/Icons.jsx'
 
-const allItems = [...places, ...restaurants, ...souvenirs]
-const blankFilters = {region:'',category:'',diet:'',period:'',environment:'',reservationStatus:'',verificationStatus:''}
+const conditionByPlaceId = Object.fromEntries(visitConditions.items.map(item => [item.placeId, item]))
+const allItems = [...places.map(item => ({...item, visitCondition:conditionByPlaceId[item.id]})), ...restaurants, ...souvenirs]
+const blankFilters = {region:'',category:'',diet:'',period:'',environment:'',bookingType:'',verificationStatus:''}
 
 function routeFromHash() {
   const value = window.location.hash.replace(/^#\/?/, '')
@@ -56,14 +58,15 @@ function Explore({ initialQuery='', initialFilters=blankFilters }) {
   const [query,setQuery]=useState(initialQuery)
   const [filters,setFilters]=useState({...blankFilters,...initialFilters})
   const results=useMemo(()=>allItems.filter(item=>{
-    const haystack=[item.name,item.category,item.region,item.description,item.diet,item.notes,...item.period,...item.environment,...(item.stores || []).map(store=>store.name)].join(' ').toLowerCase()
+    const condition=item.visitCondition
+    const haystack=[item.name,item.category,item.region,item.description,item.diet,item.notes,...item.period,...item.environment,...(item.stores || []).map(store=>store.name),condition?.hours,condition?.closed,condition?.admission,condition?.booking].filter(Boolean).join(' ').toLowerCase()
     if(query.trim()&&!haystack.includes(query.trim().toLowerCase())) return false
     if(filters.region&&item.region!==filters.region) return false
     if(filters.category&&item.category!==filters.category) return false
     if(filters.diet&&item.diet!==filters.diet) return false
     if(filters.period&&!item.period.includes(filters.period)) return false
     if(filters.environment&&!item.environment.includes(filters.environment)) return false
-    if(filters.reservationStatus&&item.reservationStatus!==filters.reservationStatus) return false
+    if(filters.bookingType&&condition?.bookingType!==filters.bookingType) return false
     if(filters.verificationStatus&&item.verificationStatus!==filters.verificationStatus) return false
     return true
   }),[query,filters])
@@ -79,7 +82,12 @@ function RegionPage({ id }) {
   return <main className={`page-main region-detail ${itinerary.accent}`}><section className="region-hero"><a href="#/regions">← 回到四大區域</a><p className="eyebrow">{itinerary.eyebrow}</p><h1>{itinerary.name}</h1><p>{itinerary.summary}</p><div className="route-line"><span>建議方向</span><strong>{itinerary.direction}</strong></div></section><section className="section schedule-section"><div className="schedule-grid">{columns.map(([title,items])=><article key={title}><p>{title}</p><ul>{items.map((item,i)=><li key={item}><span>{String(i+1).padStart(2,'0')}</span>{item}</li>)}</ul></article>)}</div><aside className="weather-plan"><span>風</span><div><strong>天氣備案</strong><p>{itinerary.badWeather}</p></div></aside></section><section className="section"><div className="section-heading"><div><p className="eyebrow">PLACES ON THIS ROUTE</p><h2>這一區的候選地點</h2></div></div><div className="card-grid">{regionItems.map(item=><PlaceCard key={item.id} item={item}/>)}</div></section></main>
 }
 
-function Info() { return <main className="page-main"><section className="page-intro narrow"><p className="eyebrow">BEFORE YOU GO</p><h1>把變動留給風，把確認留給出發前</h1><p>日期、班機、住宿與店家營業仍有未定項目。這裡只放可信的方向，不把未知寫成確定。</p></section><section className="section info-layout"><div><h2>旅行基本資訊</h2><dl className="facts">{Object.entries(travelInfo.trip).map(([key,value])=><div key={key}><dt>{{date:'日期',duration:'天數',people:'人數',transport:'交通',stay:'住宿'}[key]}</dt><dd>{value}</dd></div>)}</dl><h2>出發前確認清單</h2><ul className="reminder-list">{travelInfo.reminders.map((item,index)=><li key={item}><span>{index+1}</span>{item}</li>)}</ul></div><aside className="official-links"><p className="eyebrow">OFFICIAL LINKS</p><h2>官方資訊</h2>{travelInfo.links.map(link=><a href={link.url} target="_blank" rel="noreferrer" key={link.url}><div><strong>{link.label}</strong><span>{link.description}</span></div><ArrowIcon/></a>)}<div className="verify-note"><strong>資料標記原則</strong><p>「待查證」代表尚未取得足以支持 2026 年 11 月營運的來源；「季節性營業」也必須出發前再確認。</p></div></aside></section></main> }
+function Info() {
+  const namedConditions=visitConditions.items.map(condition=>({condition,place:places.find(place=>place.id===condition.placeId)})).filter(item=>item.place)
+  return <main className="page-main"><section className="page-intro narrow"><p className="eyebrow">BEFORE YOU GO</p><h1>把變動留給風，把確認留給出發前</h1><p>會影響入場的開放時間、休館日、票價與預約規則集中在這裡；資料以 2026 年 10 月 30 日官方公告為準。</p></section>
+    <section className="section conditions-section"><a className="campaign-banner" href={visitConditions.campaign.sourceUrl} target="_blank" rel="noreferrer"><span>本次適用</span><div><p>{visitConditions.campaign.period}</p><h2>{visitConditions.campaign.title}</h2><small>{visitConditions.campaign.summary}</small></div><ArrowIcon/></a><div className="conditions-heading"><div><p className="eyebrow">ENTRY CONDITIONS</p><h2>需要排時間的景點</h2></div><p>只收錄會影響能否進場或行程順序的條件；戶外開放空間仍以天候及現場封閉為準。</p></div><div className="conditions-grid">{namedConditions.map(({condition,place})=><article className="condition-card" key={condition.placeId}><div className="condition-title"><div><span>{place.region}</span><h3>{place.name}</h3></div><strong>{condition.badge}</strong></div><dl><div><dt>開放</dt><dd>{condition.hours}</dd></div><div><dt>休館／限制</dt><dd>{condition.closed}</dd></div><div><dt>費用</dt><dd>{condition.admission}</dd></div><div><dt>預約</dt><dd>{condition.booking}</dd></div></dl><a href={condition.sourceUrl} target="_blank" rel="noreferrer">查看官方來源 <ArrowIcon/></a></article>)}</div></section>
+    <section className="section info-layout"><div><h2>旅行基本資訊</h2><dl className="facts">{Object.entries(travelInfo.trip).map(([key,value])=><div key={key}><dt>{{date:'日期',duration:'天數',people:'人數',transport:'交通',stay:'住宿'}[key]}</dt><dd>{value}</dd></div>)}</dl><h2>出發前確認清單</h2><ul className="reminder-list">{travelInfo.reminders.map((item,index)=><li key={item}><span>{index+1}</span>{item}</li>)}</ul></div><aside className="official-links"><p className="eyebrow">OFFICIAL LINKS</p><h2>官方資訊</h2>{travelInfo.links.map(link=><a href={link.url} target="_blank" rel="noreferrer" key={link.url}><div><strong>{link.label}</strong><span>{link.description}</span></div><ArrowIcon/></a>)}<div className="verify-note"><strong>資料標記原則</strong><p>以上條件已查到官方或場館第一方來源；臨時休館、天候封閉與票價異動仍以出發前公告為準。</p></div></aside></section></main>
+}
 
 function Footer() { return <footer><div><strong>島嶼慢慢走</strong><p>給五個人的澎湖自駕旅行手冊</p></div><p>所有行程皆為候選 · 安全與現場公告優先</p></footer> }
 

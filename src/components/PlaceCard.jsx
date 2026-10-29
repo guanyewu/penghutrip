@@ -15,14 +15,15 @@ export default function PlaceCard({ item }) {
     <p className="place-copy">{item.description || '介紹待確認'}</p>
     <div className="tag-row">
       {item.diet !== '不適用' && <span className="tag diet-tag">{item.diet}</span>}
-      {item.reservationStatus && <span className="tag booking-tag">{item.reservationStatus}</span>}
+      {(item.visitCondition?.bookingLabel || item.reservationStatus) && <span className="tag booking-tag">{item.visitCondition?.bookingLabel || item.reservationStatus}</span>}
       {item.environment.slice(0, 2).map(tag => <span className="tag" key={tag}>{tag}</span>)}
     </div>
+    {item.visitCondition && <div className="visit-condition"><strong>{item.visitCondition.badge}</strong><span>{item.visitCondition.hours}</span><span>{item.visitCondition.admission}</span></div>}
     <div className="note"><strong>行前備註</strong><span>{item.notes || '待確認'}</span></div>
     {item.stores?.length > 0 && <div className="store-list"><strong>文章提及店家</strong><div>{item.stores.map(store => <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(store.query || `${store.name} 澎湖`)}`} target="_blank" rel="noreferrer" key={store.name}>{store.name} ↗</a>)}</div></div>}
     <div className="card-actions">
       {!item.stores?.length && <a className="map-button" href={mapsUrl} target="_blank" rel="noreferrer" aria-label={`在 Google Maps 搜尋 ${item.name}`}><PinIcon />Google Maps</a>}
-      {item.sourceUrl && <a className="source-button" href={item.reservationUrl || item.sourceUrl} target="_blank" rel="noreferrer">{item.sourceLabel || '官方資訊'}</a>}
+      {(item.visitCondition?.sourceUrl || item.sourceUrl) && <a className="source-button" href={item.visitCondition?.sourceUrl || item.reservationUrl || item.sourceUrl} target="_blank" rel="noreferrer">{item.sourceLabel || '官方資訊'}</a>}
     </div>
   </article>
 }

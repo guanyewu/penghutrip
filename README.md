@@ -23,6 +23,7 @@ npm run preview
 - 餐飲：`src/data/restaurants.json`
 - 區域行程：`src/data/itineraries.json`
 - 旅行資訊：`src/data/travel-info.json`
+- 開放時間、票價與預約條件：`src/data/visit-conditions.json`
 
 每筆景點或餐飲需保留唯一 `id`，以及 `verificationStatus`、`lastVerifiedAt`、`sourceUrl`、`notes`。未取得可信來源時請使用 `unverified`，不要填入推測的地址、電話、營業時間或無海鮮保證。
 

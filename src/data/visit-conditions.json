@@ -1,0 +1,143 @@
+{
+  "campaign": {
+    "title": "本次旅行遇上秋冬館舍免票",
+    "period": "2026/10/16–2027/01/13",
+    "summary": "澎湖縣政府文化局所屬館舍於活動期間免票；各館休館日、團體導覽申請與臨時公告仍照常適用。龍門閉鎖陣地另免費至 2027/01/31。",
+    "sourceUrl": "https://www.penghu.gov.tw/phhcc/home.jsp?act=view&dataserno=11510150007&id=59",
+    "lastVerifiedAt": "2026-10-30"
+  },
+  "items": [
+    {
+      "placeId": "magong-duxing",
+      "badge": "館舍有時段",
+      "bookingType": "walk-in",
+      "bookingLabel": "個人免預約",
+      "hours": "園區 08:00–21:30；資訊服務站週四至週一 09:00–12:00、14:00–17:00",
+      "closed": "資訊服務站週二、週三及國定假日休館",
+      "admission": "園區自由參觀；文化局館舍於本次旅行期間免票",
+      "booking": "一般散步免預約；想進特定館舍仍要配合各館開放時間。",
+      "sourceUrl": "https://www.penghu-nsa.gov.tw/TravelInformationSceneryDetailC001200.aspx?Cond=1c71e770-ea73-4930-918e-e9b22112088e&Language=1028&SearchAdvanced=False&SortType=1",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "magong-life-museum",
+      "badge": "週三休館",
+      "bookingType": "group-only",
+      "bookingLabel": "個人免預約；團體導覽預約",
+      "hours": "週四至週二 09:00–17:00",
+      "closed": "每週三、農曆除夕及館方公告日",
+      "admission": "本次旅行期間免票（原一般票價暫不適用）",
+      "booking": "個人參觀免預約；10 人以上團體導覽請至少 1 週前申請。",
+      "sourceUrl": "https://www.penghu.gov.tw/phlm/ch/index.jsp",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "magong-development-museum",
+      "badge": "午間不開放",
+      "bookingType": "group-only",
+      "bookingLabel": "個人免預約；導覽可預約",
+      "hours": "09:00–12:00、14:00–17:00",
+      "closed": "文化局同頁的開放日表格與休館附註互相矛盾；週二是否開館務必先電話確認",
+      "admission": "本次旅行期間免票",
+      "booking": "一般參觀不需預約；若需要團體導覽，可使用館方線上預約。電話 06-9278952。",
+      "sourceUrl": "https://www.penghu.gov.tw/pphkt/ch/index.jsp",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "magong-geopark-center",
+      "badge": "VR 另行預約",
+      "bookingType": "group-only",
+      "bookingLabel": "展館免預約；VR 另行預約",
+      "hours": "08:00–12:00、13:00–17:00",
+      "closed": "颱風停班停課或旅遊處臨時公告時閉館",
+      "admission": "展館及「搖滾藍洞」4D VR 體驗目前皆為免費",
+      "booking": "一般展館參觀免預約；VR 體驗另有場次與登入預約入口，想體驗者請先查看官方頁。",
+      "sourceUrl": "https://www.penghu.gov.tw/tourism/home.jsp?act=view&dataserno=11502060019&id=61",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "north-xiaomen-museum",
+      "badge": "週二休館",
+      "bookingType": "group-only",
+      "bookingLabel": "個人現場購票；團體可預約",
+      "hours": "週三至週一 08:30–12:00、13:00–16:30",
+      "closed": "每週二；12:00–13:00 館內整理不開放",
+      "admission": "全票 NT$30、優待票 NT$15；其餘資格依官方規定",
+      "booking": "個人現場購票；10 人以上團體可於 3 日前電話預約（06-9982988）。",
+      "sourceUrl": "https://www.penghu-nsa.gov.tw/TravelInformationSceneryDetailC001200.aspx?Cond=0ed68fac-2953-40d0-b313-71fde899328e&Language=1028&SearchAdvanced=False&SortType=1",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "north-lighthouse",
+      "badge": "週一休館",
+      "bookingType": "walk-in",
+      "bookingLabel": "免預約",
+      "hours": "11 月採冬令時間 09:00–17:00",
+      "closed": "每週一；遇國定假日或連假則改為收假次日不開放",
+      "admission": "官方頁未列本次參觀票價，抵達前以航港局公告為準",
+      "booking": "一般參觀免預約；燈塔已於 2026/01/31 修繕後重新開放。",
+      "sourceUrl": "https://www.motcmpb.gov.tw/Information/Detail/88ad6b00-bb87-4181-b6e2-7fae98efbc5b?NodeId=15&SiteId=1",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "north-aquarium",
+      "badge": "需購票",
+      "bookingType": "group-only",
+      "bookingLabel": "個人現場購票；團體需預約",
+      "hours": "每日 09:00–17:00，16:30 停止售票",
+      "closed": "臨時休館另看官方公告",
+      "admission": "全票 NT$300；學生／軍警 NT$210；65 歲以上或澎湖縣民 NT$150",
+      "booking": "一般個人不需預約；20 人以上同一團體票 NT$240，須於 3 日前預約。",
+      "sourceUrl": "https://www.penghu-aquarium.com/information",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "huxi-kuibi",
+      "badge": "潮汐管制",
+      "bookingType": "check",
+      "bookingLabel": "當日確認開放旗號",
+      "hours": "沒有固定可通行時段，需依旅行日期的潮汐表與現場管制",
+      "closed": "步道未露出至少 1 公尺寬、紅旗或現場封閉時禁止進入",
+      "admission": "免票",
+      "booking": "不需預約；以乾潮前約 3 小時至乾潮後 1 小時為參考，現場指示優先。",
+      "sourceUrl": "https://www.penghu-nsa.gov.tw/TravelInformationSceneryDetailC001200.aspx?Cond=0947d150-504e-425c-9920-cd5fa2652527&Language=1028&SearchAdvanced=False&SortType=1",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "huxi-longmen-fort",
+      "badge": "已取消預約制",
+      "bookingType": "walk-in",
+      "bookingLabel": "免預約自助參觀",
+      "hours": "09:00–12:00、13:00–17:00",
+      "closed": "除夕休館；臨時狀況請於出發前查公告或致電 0905-676113",
+      "admission": "2026/10/16–2027/01/31 免費",
+      "booking": "自 2026 年 4 月起取消預約及分梯次導覽，改為購票／活動期間免費入場後自助導覽。",
+      "sourceUrl": "https://www.penghu.gov.tw/tourism/home.jsp?act=view&dataserno=11509240002&id=61",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "huxi-tsai-mansion",
+      "badge": "開放時段分日",
+      "bookingType": "group-only",
+      "bookingLabel": "部分時段限團體預約",
+      "hours": "週日、一、四 10:30–15:00；週五、六 09:00–12:00、14:00–17:00",
+      "closed": "週二、週三及國定假日休館",
+      "admission": "本次旅行期間免票",
+      "booking": "週日、一、四的 09:00–10:30 與 15:00–17:00 僅開放 10 人以上團體預約。",
+      "sourceUrl": "https://www.penghu.gov.tw/phhcc/home.jsp?id=67",
+      "lastVerifiedAt": "2026-10-30"
+    },
+    {
+      "placeId": "south-hatchery",
+      "badge": "分預約／自由時段",
+      "bookingType": "group-only",
+      "bookingLabel": "自由時段免預約；導覽需預約",
+      "hours": "週五至週三 09:00–12:00、14:00–17:00；閉場前 30 分鐘停止入場",
+      "closed": "每週四設施維護；農曆年前另有約 30 日整修期",
+      "admission": "免票",
+      "booking": "自由入場 10:30–11:50、15:30–16:50；預約導覽 09:00–10:20、14:00–15:20，10 人以上至少 1 週前申請。",
+      "sourceUrl": "https://www.phmlps.gov.tw/home.jsp?id=29",
+      "lastVerifiedAt": "2026-10-30"
+    }
+  ]
+}

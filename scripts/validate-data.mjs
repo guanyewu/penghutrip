@@ -25,3 +25,16 @@ for (const file of files) {
 }
 
 console.log(`資料驗證完成：${count} 筆候選、${seen.size} 個唯一 ID。`)
+
+const visitConditions = JSON.parse(await readFile(new URL('../src/data/visit-conditions.json', import.meta.url), 'utf8'))
+const conditionIds = new Set()
+for (const item of visitConditions.items) {
+  for (const key of ['placeId','badge','bookingType','bookingLabel','hours','closed','admission','booking','sourceUrl','lastVerifiedAt']) {
+    if (!item[key]) throw new Error(`visit-conditions.json: ${item.placeId || '(unknown)'} 缺少 ${key}`)
+  }
+  if (!seen.has(item.placeId)) throw new Error(`visit-conditions.json: 找不到景點 ${item.placeId}`)
+  if (conditionIds.has(item.placeId)) throw new Error(`visit-conditions.json: 重複景點 ${item.placeId}`)
+  conditionIds.add(item.placeId)
+}
+if (!visitConditions.campaign?.sourceUrl || !visitConditions.campaign?.lastVerifiedAt) throw new Error('visit-conditions.json: 活動資訊缺少來源或查證日期')
+console.log(`參觀條件驗證完成：${conditionIds.size} 個需注意景點。`)
