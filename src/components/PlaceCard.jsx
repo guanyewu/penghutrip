@@ -3,7 +3,7 @@ import { PinIcon } from './Icons.jsx'
 const statusLabels = { verified: '已查證', unverified: '待查證', seasonal: '季節性營業', closed: '已停業' }
 
 export default function PlaceCard({ item }) {
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.name} 澎湖`)}`
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.address || `${item.name} 澎湖`)}`
   return <article className="place-card">
     <div className="card-topline">
       <span className="type-label">{item.category}</span>
@@ -11,6 +11,7 @@ export default function PlaceCard({ item }) {
     </div>
     <h3>{item.name}</h3>
     <p className="place-meta">{item.region} · 建議停留 {item.stayDuration || '待確認'}</p>
+    {item.address && <p className="place-address">{item.address}</p>}
     <p className="place-copy">{item.description || '介紹待確認'}</p>
     <div className="tag-row">
       {item.diet !== '不適用' && <span className="tag diet-tag">{item.diet}</span>}

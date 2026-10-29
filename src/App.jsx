@@ -34,7 +34,7 @@ function SearchBox({ value, onChange, onSubmit, compact=false }) {
 
 function Home({ goExplore }) {
   const [query,setQuery]=useState('')
-  const quick = category => goExplore('', {category})
+  const quick = filters => goExplore('', filters)
   return <main>
     <section className="hero">
       <div className="hero-art" aria-hidden="true"><div className="sun"></div><div className="island island-one"></div><div className="island island-two"></div><div className="wave wave-one"></div><div className="wave wave-two"></div></div>
@@ -45,7 +45,7 @@ function Home({ goExplore }) {
       {itineraries.map((itinerary,index)=><a href={`#/region/${itinerary.id}`} className={`region-card ${itinerary.accent}`} key={itinerary.id}><span className="region-number">0{index+1}</span><div className="region-shape" aria-hidden="true"></div><div className="region-card-content"><p>{itinerary.eyebrow}</p><h3>{itinerary.name}</h3><span>{itinerary.summary}</span><strong>展開這條路線 <ArrowIcon/></strong></div></a>)}
     </div></section>
 
-    <section className="section food-strip"><div><p className="eyebrow">EAT ALONG THE WAY</p><h2>走到哪，吃到哪</h2><p>正餐、小吃、甜點、咖啡都放在一起。資料不足的店家，我們先誠實標記待查證。</p></div><div className="food-buttons"><button onClick={()=>quick('正餐')}><span>飯</span>非海鮮正餐</button><button onClick={()=>quick('小吃')}><span>食</span>在地小吃</button><button onClick={()=>quick('甜點')}><span>甘</span>甜點飲品</button><button onClick={()=>quick('咖啡廳')}><span>珈</span>咖啡休息</button></div></section>
+    <section className="section food-strip"><div><p className="eyebrow">EAT ALONG THE WAY</p><h2>走到哪，吃到哪</h2><p>正餐、小吃、甜點、咖啡都放在一起。海鮮餐廳照樣收錄，交給篩選決定；資料不足則誠實標記待查證。</p></div><div className="food-buttons"><button onClick={()=>quick({category:'正餐',diet:'有非海鮮選項'})}><span>飯</span>非海鮮正餐</button><button onClick={()=>quick({diet:'海鮮為主'})}><span>鮮</span>海鮮餐廳</button><button onClick={()=>quick({category:'小吃'})}><span>食</span>在地小吃</button><button onClick={()=>quick({category:'甜點'})}><span>甘</span>甜點飲品</button><button onClick={()=>quick({category:'咖啡廳'})}><span>珈</span>咖啡休息</button></div></section>
 
     <section className="section today-section"><div className="section-heading"><div><p className="eyebrow">TRIP AT A GLANCE</p><h2>出發前先知道</h2></div></div><div className="trip-grid"><div className="trip-panel"><span>旅</span><p>旅行時間</p><strong>{travelInfo.trip.date}</strong></div><div className="trip-panel"><span>人</span><p>同行人數</p><strong>{travelInfo.trip.people} · 慢旅行</strong></div><div className="trip-panel"><span>車</span><p>移動方式</p><strong>{travelInfo.trip.transport}</strong></div><a className="trip-panel link-panel" href="#/info"><span>風</span><p>天氣與潮汐</p><strong>查看官方資訊 <ArrowIcon/></strong></a></div></section>
   </main>
