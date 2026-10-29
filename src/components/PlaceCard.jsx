@@ -14,9 +14,13 @@ export default function PlaceCard({ item }) {
     <p className="place-copy">{item.description || '介紹待確認'}</p>
     <div className="tag-row">
       {item.diet !== '不適用' && <span className="tag diet-tag">{item.diet}</span>}
+      {item.reservationStatus && <span className="tag booking-tag">{item.reservationStatus}</span>}
       {item.environment.slice(0, 2).map(tag => <span className="tag" key={tag}>{tag}</span>)}
     </div>
     <div className="note"><strong>行前備註</strong><span>{item.notes || '待確認'}</span></div>
-    <a className="map-button" href={mapsUrl} target="_blank" rel="noreferrer" aria-label={`在 Google Maps 搜尋 ${item.name}`}><PinIcon />Google Maps 導航</a>
+    <div className="card-actions">
+      <a className="map-button" href={mapsUrl} target="_blank" rel="noreferrer" aria-label={`在 Google Maps 搜尋 ${item.name}`}><PinIcon />Google Maps</a>
+      {item.sourceUrl && <a className="source-button" href={item.reservationUrl || item.sourceUrl} target="_blank" rel="noreferrer">官方資訊</a>}
+    </div>
   </article>
 }

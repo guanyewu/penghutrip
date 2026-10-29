@@ -2,13 +2,15 @@
   "trip":{"date":"2026 年 11 月初（實際日期待確認）","duration":"4 天 3 夜","people":"5 人","transport":"自駕汽車","stay":"澎湖機場附近（詳細位置待確認）"},
   "links":[
     {"label":"中央氣象署｜澎湖天氣","url":"https://www.cwa.gov.tw/V8/C/W/County/County.html?CID=10","description":"查看縣市預報與風力資訊"},
-    {"label":"中央氣象署｜潮汐預報","url":"https://www.cwa.gov.tw/V8/C/M/tide.html","description":"依實際日期確認潮汐；奎壁山另看現場公告"}
+    {"label":"中央氣象署｜潮汐預報","url":"https://www.cwa.gov.tw/V8/C/M/tide.html","description":"依實際日期確認潮汐；奎壁山另看現場公告"},
+    {"label":"澎湖 GO｜景點預約","url":"https://www.penghu-go.tw/penghugo/index.php?action=reserve_spot","description":"查看官方場館介紹、預約入口與無須預約標示"}
   ],
   "reminders":[
     "11 月東北季風可能很強，同一區域也要保留室內備案。",
     "出發前 7 天與前一晚再次確認店家營業公告。",
     "同行者不能吃海鮮的程度（偏好、過敏或交叉接觸）仍待確認。",
     "沒有店家被標示為保證無海鮮；點餐前需詢問湯底與調味。",
-    "奎壁山與海岸地景以官方公告、現場封閉與安全狀況為準。"
+    "奎壁山與海岸地景以官方公告、現場封閉與安全狀況為準。",
+    "官方頁的「需預約／無須預約」不等於已確認當日開館；仍需查休館日、場次與臨時公告。"
   ]
 }

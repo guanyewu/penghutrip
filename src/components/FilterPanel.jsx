@@ -6,6 +6,7 @@ const groups = [
   ['diet','飲食',['有非海鮮選項','海鮮為主','食材待確認']],
   ['period','時段',['上午','中午','下午','晚上']],
   ['environment','環境',['室內','戶外','風大時不建議']],
+  ['reservationStatus','預約方式',['需登入預約','官方頁標示無須預約','預約方式待確認']],
   ['verificationStatus','營業資訊',['verified','unverified','seasonal']],
 ]
 const labels = { verified:'已查證', unverified:'待查證', seasonal:'季節性營業' }
@@ -13,7 +14,7 @@ const labels = { verified:'已查證', unverified:'待查證', seasonal:'季節�
 export default function FilterPanel({ filters, setFilters, resultCount }) {
   const activeCount = Object.values(filters).filter(Boolean).length
   const update = (key, value) => setFilters(current => ({...current, [key]: current[key] === value ? '' : value}))
-  const clear = () => setFilters({region:'',category:'',diet:'',period:'',environment:'',verificationStatus:''})
+  const clear = () => setFilters({region:'',category:'',diet:'',period:'',environment:'',reservationStatus:'',verificationStatus:''})
   return <aside className="filter-panel">
     <div className="filter-heading"><div><SlidersIcon /><strong>篩選條件</strong>{activeCount > 0 && <span className="count-pill">{activeCount}</span>}</div><button onClick={clear} disabled={!activeCount}>清除全部</button></div>
     {groups.map(([key,title,options]) => <div className="filter-group" key={key}>

@@ -8,7 +8,7 @@ import FilterPanel from './components/FilterPanel.jsx'
 import { ArrowIcon, CompassIcon, SearchIcon } from './components/Icons.jsx'
 
 const allItems = [...places, ...restaurants]
-const blankFilters = {region:'',category:'',diet:'',period:'',environment:'',verificationStatus:''}
+const blankFilters = {region:'',category:'',diet:'',period:'',environment:'',reservationStatus:'',verificationStatus:''}
 
 function routeFromHash() {
   const value = window.location.hash.replace(/^#\/?/, '')
@@ -62,6 +62,7 @@ function Explore({ initialQuery='', initialFilters=blankFilters }) {
     if(filters.diet&&item.diet!==filters.diet) return false
     if(filters.period&&!item.period.includes(filters.period)) return false
     if(filters.environment&&!item.environment.includes(filters.environment)) return false
+    if(filters.reservationStatus&&item.reservationStatus!==filters.reservationStatus) return false
     if(filters.verificationStatus&&item.verificationStatus!==filters.verificationStatus) return false
     return true
   }),[query,filters])
