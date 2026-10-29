@@ -1,0 +1,19 @@
+{
+  "name": "penghu-trip-guide",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run validate:data && vite build",
+    "preview": "vite preview",
+    "validate:data": "node scripts/validate-data.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "6.4.5",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {}
+}
