@@ -5,6 +5,7 @@ import souvenirs from './data/souvenirs.json'
 import itineraries from './data/itineraries.json'
 import travelInfo from './data/travel-info.json'
 import visitConditions from './data/visit-conditions.json'
+import tomorrowPlans from './data/tomorrow-plans.json'
 import PlaceCard from './components/PlaceCard.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
 import { ArrowIcon, CompassIcon, SearchIcon } from './components/Icons.jsx'
@@ -27,7 +28,7 @@ function useRoute() {
 
 function Header({ route }) {
   return <header className="site-header"><a href="#/" className="brand" aria-label="回首頁"><span className="brand-mark"><CompassIcon /></span><span><strong>島嶼慢慢走</strong><small>PENGHU TRIP GUIDE</small></span></a><nav aria-label="主要導覽">
-    <a className={route.page==='home'?'active':''} href="#/">首頁</a><a className={route.page==='explore'?'active':''} href="#/explore">探索</a><a className={route.page==='regions'||route.page==='region'?'active':''} href="#/regions">區域行程</a><a className={route.page==='info'?'active':''} href="#/info">旅行資訊</a>
+    <a className={route.page==='home'?'active':''} href="#/">首頁</a><a className={route.page==='plans'?'active':''} href="#/plans">明日方案</a><a className={route.page==='explore'?'active':''} href="#/explore">探索</a><a className={route.page==='regions'||route.page==='region'?'active':''} href="#/regions">區域行程</a><a className={route.page==='info'?'active':''} href="#/info">旅行資訊</a>
   </nav></header>
 }
 
@@ -43,6 +44,8 @@ function Home({ goExplore }) {
       <div className="hero-art" aria-hidden="true"><div className="sun"></div><div className="island island-one"></div><div className="island island-two"></div><div className="wave wave-one"></div><div className="wave wave-two"></div></div>
       <div className="hero-content"><p className="eyebrow">2026 · 4 天 3 夜 · 五人自駕</p><h1>不用趕路，<br/><em>慢慢走就好。</em></h1><p className="hero-copy">一份把路線、風景和吃飯選擇都整理好的澎湖旅行手冊。今天想往哪裡，就從那裡開始。</p><SearchBox value={query} onChange={setQuery} onSubmit={()=>goExplore(query)}/><div className="hero-notice"><span>↗</span><p><strong>行前小提醒</strong>11 月東北季風強，店家與潮汐資訊請在出發前再次查證。</p></div></div>
     </section>
+
+    <section className="tomorrow-callout"><div><p className="eyebrow">TOMORROW · 11/01</p><h2>摩西分海之後，兩種走法</h2><p>船班順利就去吉貝；海況不合就改走東環南環。兩案都留了昇恆昌購物時間。</p></div><a href="#/plans">查看兩套明日方案 <ArrowIcon/></a></section>
 
     <section className="section region-section"><div className="section-heading"><div><p className="eyebrow">CHOOSE A DIRECTION</p><h2>今天，想往哪邊走？</h2></div><a href="#/regions">查看全部區域 <ArrowIcon/></a></div><div className="region-grid">
       {itineraries.map((itinerary,index)=><a href={`#/region/${itinerary.id}`} className={`region-card ${itinerary.accent}`} key={itinerary.id}><span className="region-number">0{index+1}</span><div className="region-shape" aria-hidden="true"></div><div className="region-card-content"><p>{itinerary.eyebrow}</p><h3>{itinerary.name}</h3><span>{itinerary.summary}</span><strong>展開這條路線 <ArrowIcon/></strong></div></a>)}
@@ -82,6 +85,13 @@ function RegionPage({ id }) {
   return <main className={`page-main region-detail ${itinerary.accent}`}><section className="region-hero"><a href="#/regions">← 回到四大區域</a><p className="eyebrow">{itinerary.eyebrow}</p><h1>{itinerary.name}</h1><p>{itinerary.summary}</p><div className="route-line"><span>建議方向</span><strong>{itinerary.direction}</strong></div></section><section className="section schedule-section"><div className="schedule-grid">{columns.map(([title,items])=><article key={title}><p>{title}</p><ul>{items.map((item,i)=><li key={item}><span>{String(i+1).padStart(2,'0')}</span>{item}</li>)}</ul></article>)}</div><aside className="weather-plan"><span>風</span><div><strong>天氣備案</strong><p>{itinerary.badWeather}</p></div></aside></section><section className="section"><div className="section-heading"><div><p className="eyebrow">PLACES ON THIS ROUTE</p><h2>這一區的候選地點</h2></div></div><div className="card-grid">{regionItems.map(item=><PlaceCard key={item.id} item={item}/>)}</div></section></main>
 }
 
+function TomorrowPlans() {
+  return <main className="page-main"><section className="page-intro plans-intro"><p className="eyebrow">TOMORROW · TWO OPTIONS</p><h1>{tomorrowPlans.title}</h1><p>{tomorrowPlans.date}｜{tomorrowPlans.summary}</p><div className="tide-facts"><div><span>乾潮</span><strong>{tomorrowPlans.tide.dryTime}</strong></div><div><span>安全通行參考</span><strong>{tomorrowPlans.tide.safeWindow}</strong></div><p>{tomorrowPlans.tide.arrivalAdvice}</p><a href={tomorrowPlans.tide.sourceUrl} target="_blank" rel="noreferrer">官方潮汐表 <ArrowIcon/></a></div></section>
+    <section className="section plan-options"><div className="plans-guide"><div><p className="eyebrow">DECIDE IN THE MORNING</p><h2>先確認船，再選方案</h2></div><p>兩案 07:10–09:20 完全相同。只有吉貝船班與海況都確認沒問題時才選 A；否則直接走 B，不需要臨時重排行程。</p></div><div className="plan-columns">{tomorrowPlans.plans.map(plan=><article className={`day-plan ${plan.tone}`} key={plan.id}><header><div><span>{plan.label}</span><h2>{plan.title}</h2><p>{plan.description}</p></div><strong>{plan.status}</strong></header><div className="decision-note"><span>決定條件</span><p>{plan.decision}</p></div><ol className="day-timeline">{plan.schedule.map((stop,index)=><li className={`stop-${stop.kind}`} key={`${stop.time}-${stop.title}`}><time>{stop.time}</time><div><span>{String(index+1).padStart(2,'0')}</span><h3>{stop.title}</h3><p>{stop.detail}</p></div></li>)}</ol></article>)}</div></section>
+    <section className="section shopping-brief"><div><p className="eyebrow">DUTY FREE STOP</p><h2>{tomorrowPlans.dutyFree.name}</h2><p>{tomorrowPlans.dutyFree.shoppingNote}</p></div><div><span>營業時間</span><strong>{tomorrowPlans.dutyFree.hours}</strong><a href={tomorrowPlans.dutyFree.sourceUrl} target="_blank" rel="noreferrer">查看官方資訊 <ArrowIcon/></a></div></section>
+    <section className="section plan-sources"><p>資料查證：{tomorrowPlans.lastVerifiedAt}</p>{tomorrowPlans.sources.map(source=><a href={source.url} target="_blank" rel="noreferrer" key={source.url}>{source.label} ↗</a>)}</section></main>
+}
+
 function Info() {
   const namedConditions=visitConditions.items.map(condition=>({condition,place:places.find(place=>place.id===condition.placeId)})).filter(item=>item.place)
   return <main className="page-main"><section className="page-intro narrow"><p className="eyebrow">BEFORE YOU GO</p><h1>把變動留給風，把確認留給出發前</h1><p>會影響入場的開放時間、休館日、票價與預約規則集中在這裡；資料以 2026 年 10 月 30 日官方公告為準。</p></section>
@@ -97,6 +107,7 @@ export default function App() {
   const goExplore=(query='',filters={})=>{setExploreSeed({query,filters,key:Date.now()});window.location.hash='/explore'}
   let content
   if(route.page==='explore') content=<Explore key={exploreSeed.key} initialQuery={exploreSeed.query} initialFilters={exploreSeed.filters}/>
+  else if(route.page==='plans') content=<TomorrowPlans/>
   else if(route.page==='regions') content=<Regions/>
   else if(route.page==='region') content=<RegionPage id={route.id}/>
   else if(route.page==='info') content=<Info/>

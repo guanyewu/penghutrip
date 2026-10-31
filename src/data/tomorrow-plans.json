@@ -1,0 +1,72 @@
+{
+  "date": "2026 年 11 月 1 日（星期日）",
+  "title": "明日兩種走法",
+  "summary": "兩案都先看奎壁山摩西分海，再依吉貝船班與海況決定是否離島；下午回到馬公後保留 1–2 小時逛澎坊三號港（昇恆昌）。",
+  "lastVerifiedAt": "2026-10-31",
+  "tide": {
+    "dryTime": "09:17",
+    "safeWindow": "08:00–11:00",
+    "arrivalAdvice": "07:40 前抵達，先從岸上看海路逐漸浮現；08:00 後依現場旗號決定是否進入步道。",
+    "sourceUrl": "https://www.penghu-nsa.gov.tw/Services/Tidenew/11511tide.htm"
+  },
+  "dutyFree": {
+    "name": "澎坊三號港（昇恆昌）",
+    "hours": "11:00–21:00",
+    "shoppingNote": "免稅購物請帶身分證或健保卡及離境航班資料；搭機離境須於起飛前至少 2 小時完成預購。",
+    "sourceUrl": "https://www.profond.com.tw/tw/pier3"
+  },
+  "plans": [
+    {
+      "id": "jibei",
+      "label": "方案 A",
+      "title": "摩西分海＋吉貝短遊",
+      "tone": "blue",
+      "status": "船班確認後採用",
+      "description": "把潮汐與固定船班接在一起，行程最豐富但也最緊湊；吉貝實際停留約 2 小時。",
+      "decision": "出發前先致電白沙之星 0911-260-293，確認 11:15 赤崁出發與 14:00 吉貝回程均有開航、仍有座位。任一班不確定就改走方案 B。",
+      "schedule": [
+        {"time":"07:10","title":"住宿出發","detail":"從澎湖機場附近出發，預留停車與步行時間。","kind":"move"},
+        {"time":"07:40","title":"抵達奎壁山","detail":"先在岸上看海水退去，等待海路逐漸出現。","kind":"fixed"},
+        {"time":"08:00–09:20","title":"奎壁山摩西分海","detail":"官方安全通行參考時段 08:00–11:00，乾潮 09:17；紅旗或封閉時不進入。","kind":"fixed"},
+        {"time":"09:20–10:05","title":"前往赤崁北海遊客中心","detail":"抵達後停車、購票並再次確認 14:00 回程。","kind":"move"},
+        {"time":"10:05–10:45","title":"補給與提早用餐","detail":"吉貝淡季餐飲選擇可能較少，建議先準備簡單午餐、飲水與防風外套。","kind":"flex"},
+        {"time":"10:45–11:15","title":"報到候船","detail":"不要壓最後時間；暈船者先吃藥。","kind":"fixed"},
+        {"time":"11:15–11:35","title":"赤崁 → 吉貝","detail":"航程約 20 分鐘，實際時間以當日船方安排為準。","kind":"fixed"},
+        {"time":"11:35–13:30","title":"吉貝短程環島","detail":"碼頭租車後走三心石滬觀景平台、聚落與吉貝沙尾；11 月不安排水上活動。","kind":"highlight"},
+        {"time":"13:30–14:00","title":"還車、回碼頭候船","detail":"至少提早 30 分鐘回到碼頭，避免錯過唯一合適的回程。","kind":"fixed"},
+        {"time":"14:00–14:20","title":"吉貝 → 赤崁","detail":"若船班延誤，後面的購物時間可縮短。","kind":"fixed"},
+        {"time":"14:20–15:10","title":"返回馬公","detail":"由赤崁開車前往澎坊三號港。","kind":"move"},
+        {"time":"15:10–17:10","title":"澎坊三號港（昇恆昌）","detail":"保留完整 2 小時購物、休息；需要免稅預購者先備好離境航班資料與證件。","kind":"shopping"},
+        {"time":"17:10 後","title":"晚餐或自由活動","detail":"可直接在市區用餐，不再安排遠距離景點。","kind":"flex"}
+      ]
+    },
+    {
+      "id": "east-south",
+      "label": "方案 B",
+      "title": "摩西分海＋東環南環",
+      "tone": "green",
+      "status": "穩定備案",
+      "description": "不搭船、移動風險較低；上午接東環聚落，午後沿南岸慢慢回馬公。",
+      "decision": "若吉貝船班停航、座位不足、風浪偏大，或大家不想趕船，直接採用本案。山水與嵵裡可依風勢擇一長停。",
+      "schedule": [
+        {"time":"07:10","title":"住宿出發","detail":"從澎湖機場附近出發，預留停車與步行時間。","kind":"move"},
+        {"time":"07:40","title":"抵達奎壁山","detail":"先在岸上觀察海路成形，08:00 後依現場旗號通行。","kind":"fixed"},
+        {"time":"08:00–09:20","title":"奎壁山摩西分海","detail":"乾潮 09:17；拍照後準時離開，不把後續路線壓得太緊。","kind":"fixed"},
+        {"time":"09:40–10:30","title":"南寮古厝","detail":"走古厝、菜宅與聚落，不特別追體驗活動。","kind":"highlight"},
+        {"time":"10:45–11:20","title":"菓葉灰窯","detail":"短停看工業遺構；若現場不適合進入，就直接前往午餐。","kind":"flex"},
+        {"time":"11:40–12:40","title":"湖西／機場周邊午餐","detail":"以有非海鮮選項的簡餐為主，出發前再確認店家週日營業。","kind":"meal"},
+        {"time":"13:05–13:35","title":"鎖港聚落","detail":"短程散步，作為東環轉入南環的銜接點。","kind":"flex"},
+        {"time":"13:45–15:00","title":"山水沙灘與 30 高地","detail":"風況舒適就以沙灘長停為主；強風時不登高地。","kind":"highlight"},
+        {"time":"15:10–15:45","title":"嵵裡沙灘（可選）","detail":"若山水已停很久或風太強，這站直接略過，提早回馬公。","kind":"flex"},
+        {"time":"15:45–16:15","title":"返回馬公","detail":"前往澎坊三號港，沿途不再追加景點。","kind":"move"},
+        {"time":"16:15–17:45","title":"澎坊三號港（昇恆昌）","detail":"安排 1.5 小時購物；若略過嵵裡，可提早抵達並延長到 2 小時。","kind":"shopping"},
+        {"time":"17:45 後","title":"市區晚餐","detail":"依大家當下想吃的品項決定，不把晚餐綁死。","kind":"flex"}
+      ]
+    }
+  ],
+  "sources": [
+    {"label":"奎壁山官方潮汐表","url":"https://www.penghu-nsa.gov.tw/Services/Tidenew/11511tide.htm"},
+    {"label":"澎坊三號港官方資訊","url":"https://www.profond.com.tw/tw/pier3"},
+    {"label":"澎坊免稅購物與提貨指南","url":"https://www.profond.com.tw/tw/travelogue/penghu"}
+  ]
+}

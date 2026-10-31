@@ -38,3 +38,17 @@ for (const item of visitConditions.items) {
 }
 if (!visitConditions.campaign?.sourceUrl || !visitConditions.campaign?.lastVerifiedAt) throw new Error('visit-conditions.json: 活動資訊缺少來源或查證日期')
 console.log(`參觀條件驗證完成：${conditionIds.size} 個需注意景點。`)
+
+const tomorrowPlans = JSON.parse(await readFile(new URL('../src/data/tomorrow-plans.json', import.meta.url), 'utf8'))
+if (!tomorrowPlans.date || !tomorrowPlans.tide?.sourceUrl || !tomorrowPlans.dutyFree?.sourceUrl || !tomorrowPlans.lastVerifiedAt) throw new Error('tomorrow-plans.json: 缺少日期、來源或查證日期')
+if (!Array.isArray(tomorrowPlans.plans) || tomorrowPlans.plans.length !== 2) throw new Error('tomorrow-plans.json: 必須正好提供兩套方案')
+for (const plan of tomorrowPlans.plans) {
+  for (const key of ['id','label','title','status','description','decision']) {
+    if (!plan[key]) throw new Error(`tomorrow-plans.json: ${plan.id || '(unknown)'} 缺少 ${key}`)
+  }
+  if (!Array.isArray(plan.schedule) || plan.schedule.length === 0) throw new Error(`${plan.id}: 行程不可為空`)
+  for (const stop of plan.schedule) {
+    if (!stop.time || !stop.title || !stop.detail || !stop.kind) throw new Error(`${plan.id}: 行程節點欄位不完整`)
+  }
+}
+console.log(`明日方案驗證完成：${tomorrowPlans.plans.length} 套行程。`)
